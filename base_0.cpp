@@ -139,7 +139,7 @@ void fun3(int i , int j, int k)   //注意这里不要写参数默认值
 
 
 /* 关于内存管理 */
-int main()
+int main_z()
 {
 	//int* p = new int;
 	int* p = new int[1000];
@@ -156,6 +156,219 @@ int main()
 	p = NULL;
 	return 0;
 }
+
+
+#include<iostream>
+#include<stdlib.h>
+#include<string>
+using namespace std;
+
+
+/* 关于类的基础学习 */
+
+class Demar
+{
+public:                // 数据成员成员函数都在public中
+	int x;
+	int y;
+	void printX()
+	{
+		cout << x << endl;
+	}
+	void printY()
+	{
+		cout << y << endl;
+	}
+};
+
+int main_6()
+{
+	Demar de;
+
+	de.x = 10;      //栈的方式实例化对象
+	de.y = 20;
+	de.printX();
+	de.printY();
+
+	Demar* p = new Demar(); //堆的方式实例化
+	if (NULL == p)
+	{
+		p->x = 15;
+		p->y = 25;
+		p->printX();
+		p->printY();
+		delete p;
+		p = NULL;
+	}
+
+	return 0;
+}
+
+
+/* 字符串的基本操作学习 */
+
+string s1 = "hello";
+string s2("world");
+string s3 = s1 + s2;
+string s4 = "hello" + s2;
+string s5 = "hello" + s2 + "world";
+//string s6 = "hello" + "world";         // 不合法！！
+
+
+/*
+eg.
+   1.提示用户输入姓名
+   2.接收用户的输入
+   3.然后向用户问好，hello XXX
+   4.告诉用户名字的长度
+   5.告诉用户名字的首字母
+   6.如果用户输入回车，告诉用户输入为空
+   7.如果用户输入imooc，告诉用户的角色是一个管理员
+*/
+
+
+int main_7()
+{
+	string name;
+	cout << "Please input your name:";
+	getline(cin, name);   // 因为要输入回车,cin不能
+	if (name.empty())
+	{
+		cout << "input is null.." << endl;
+		return 0;
+	}
+	if (name == "imooc")
+	{
+		cout << "you are an administrator" << endl;
+	}
+	cout << "hello " + name << endl;
+	cout << "your name length is " << name.size() << endl;
+	cout << "your name first letter is: " << name[0] << endl;
+	return 0;
+}
+
+
+/* 数据的封装 */
+class Student
+{
+public:
+	void setName(string _name)
+	{
+		m_strName = _name;
+	}
+	string getName()
+	{
+		return m_strName;
+	}
+	void setGender(string _gender)
+	{
+		m_strGender = _gender;
+	}
+	string getGender()
+	{
+		return m_strGender;
+	}
+	int getScore()
+	{
+		return m_iScore;    //学分只读
+	}
+	void initScore()
+	{
+		m_iScore = 0;
+	}
+	void study(int _score)
+	{
+		m_iScore += _score;
+	}
+private:
+	string m_strName;
+	string m_strGender;
+	int m_iScore;
+};
+
+int main_8()
+{
+	Student stu;
+	stu.initScore();      // 必须初始化
+	stu.setName("QiuLong");
+	stu.setGender("男");
+	stu.study(5);
+	stu.study(3);
+	cout << stu.getName() << " " << stu.getGender() << " " << stu.getScore() << endl;
+	return 0;
+}
+
+
+/* 定义一个Teacher 类 ，分别采用同文件类外定义和分文件类外定义 */
+// 同文件类外定义
+//class Teacher
+//{
+//public:
+//	void setName(string _name);
+//	string getName();
+//	void setGender(string _gender);
+//	string getGender();
+//	void setAge(int _age);
+//	int getAge();
+//	void teach();
+//private:
+//	string m_strName;
+//	string m_strGender;
+//	int m_iAge;
+ //};
+//
+//void Teacher::setName(string _name)
+//{
+//	m_strName = _name;
+//}
+//
+//string Teacher::getName()
+//{
+//	return m_strName;
+//}
+//
+//void Teacher::setGender(string _gender)
+//{
+//	m_strGender = _gender;
+//}
+//string Teacher::getGender()
+//{
+//	return m_strGender;
+//}
+//
+//void Teacher::setAge(int _age)
+//{
+//	m_iAge = _age;
+//}
+//int Teacher::getAge()
+//{
+//	return m_iAge;
+//}
+//void Teacher::teach()
+//{
+//	cout << "现在上课..." << endl;
+//}
+
+// 分文件类外定义
+
+#include"Teacher.h"
+int main()
+{
+	Teacher t;   // 调用构造函数
+
+	Teacher t1("Merry", 15);
+	t.setName("孔子");
+	t.setGender("男");
+	t.setAge(30);
+	cout << t.getName() << " " << t.getGender() << " " << t.getAge() << endl;
+	t.teach();
+	return 0;
+}
+
+
+
+
+
 
 
 
