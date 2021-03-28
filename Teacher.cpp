@@ -2,18 +2,36 @@
 #include "Teacher.h"
 using namespace std;
 
-Teacher::Teacher()     //无参构造函数
+//Teacher::Teacher()     //无参构造函数
+//{
+//	m_strName = "Jim";
+//	m_iAge = 5;
+//	cout << "Teacher()" << endl;
+//}
+//Teacher::Teacher(string name, int age)  //有参构造函数
+//{
+//	m_strName = name;
+//	m_iAge = age;
+//	cout << "Teacher(string name,int age)" << endl;
+//}
+
+//默认构造函数(用初始化列表)
+Teacher::Teacher(string name, int age, int m) :m_strName(name),m_iAge(age),m_iMax(m)
 {
-	m_strName = "Jim";
-	m_iAge = 5;
-	cout << "Teacher()" << endl;
-}
-Teacher::Teacher(string name, int age)  //有参构造函数
-{
-	m_strName = name;
-	m_iAge = age;
+	//m_iMax = m;
 	cout << "Teacher(string name,int age)" << endl;
 }
+
+Teacher::Teacher(const Teacher & ):m_iMax(30)
+{
+	cout << "Teacher(const Teacher &tea)" << endl;
+}
+
+Teacher::~Teacher()
+{
+	cout << "~Teacher()" << endl;
+}
+
 void Teacher::setName(string _name)
 {
 	m_strName = _name;
@@ -44,4 +62,9 @@ int Teacher::getAge()
 void Teacher::teach()
 {
 	cout << "现在上课..." << endl;
+}
+
+int Teacher::getMax()
+{
+	return m_iMax;
 }

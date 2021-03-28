@@ -349,19 +349,33 @@ int main_8()
 //	cout << "现在上课..." << endl;
 //}
 
-// 分文件类外定义
+#include<vector>
 
+// 分文件类外定义
 #include"Teacher.h"
 int main()
 {
+	Teacher* p = new Teacher();
+	delete p;
 	Teacher t;   // 调用构造函数
-
-	Teacher t1("Merry", 15);
-	t.setName("孔子");
-	t.setGender("男");
-	t.setAge(30);
-	cout << t.getName() << " " << t.getGender() << " " << t.getAge() << endl;
+	//Teacher t("Merry", 15, 150);
+	Teacher t1 = t;
+	Teacher t3(t);
+	//Teacher t1("Merry", 15);
+	//t.setName("孔子");
+	//t.setGender("男");
+	//t.setAge(30);
+	cout << t.getName() << " " << t.getGender() << " " << t.getAge()<<" "<<t.getMax()<< endl;
+	cout << t1.getName() << " " << t1.getGender() << " " << t1.getAge() << " " << t1.getMax() << endl;
 	t.teach();
+	
+	//vector<int>v;
+	//for (int i = 0; i != 100; ++i)
+	//{
+	//	v.push_back(i);
+	//	cout << v[i] << endl;
+	//}
+
 	return 0;
 }
 
