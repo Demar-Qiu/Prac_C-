@@ -68,3 +68,13 @@ int Teacher::getMax()
 {
 	return m_iMax;
 }
+
+
+Coordinate::Coordinate()
+{
+	cout << "Coordinate" << endl;
+}
+Coordinate::~Coordinate()
+{
+	cout << "~Coordinate" << endl;
+}

@@ -355,19 +355,19 @@ int main_8()
 #include"Teacher.h"
 int main()
 {
-	Teacher* p = new Teacher();
-	delete p;
-	Teacher t;   // 调用构造函数
-	//Teacher t("Merry", 15, 150);
-	Teacher t1 = t;
-	Teacher t3(t);
-	//Teacher t1("Merry", 15);
-	//t.setName("孔子");
-	//t.setGender("男");
-	//t.setAge(30);
-	cout << t.getName() << " " << t.getGender() << " " << t.getAge()<<" "<<t.getMax()<< endl;
-	cout << t1.getName() << " " << t1.getGender() << " " << t1.getAge() << " " << t1.getMax() << endl;
-	t.teach();
+	//Teacher* p = new Teacher();
+	//delete p;                   // 注意析构函数
+	//Teacher t;   // 调用构造函数
+	////Teacher t("Merry", 15, 150);
+	//Teacher t1 = t;
+	//Teacher t3(t);
+	////Teacher t1("Merry", 15);
+	////t.setName("孔子");
+	////t.setGender("男");
+	////t.setAge(30);
+	//cout << t.getName() << " " << t.getGender() << " " << t.getAge()<<" "<<t.getMax()<< endl;
+	//cout << t1.getName() << " " << t1.getGender() << " " << t1.getAge() << " " << t1.getMax() << endl;
+	//t.teach();
 	
 	//vector<int>v;
 	//for (int i = 0; i != 100; ++i)
@@ -376,6 +376,38 @@ int main()
 	//	cout << v[i] << endl;
 	//}
 
+	/* 关于对象数组 */
+   //栈中实例化对象数组
+	Coordinate coor[3];
+	coor[0].m_iX = 3;
+	coor[0].m_iY = 5;
+	//堆中实例化对象数组
+	Coordinate* r = new Coordinate[3];
+	r->m_iX = 7;
+	r[0].m_iY = 9;
+
+	r++;
+	r->m_iX = 11;  //此时是第二个元素
+	r[0].m_iY = 13;
+	r[1].m_iX = 15; // 此时是第三个元素
+	r++;
+	r->m_iY = 17;  // 也是第三个元素
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "coor_x" << coor[i].m_iX << endl;
+		cout << "coor_y" << coor[i].m_iY << endl;
+	}
+	for (int j = 0; j < 3; j++)
+	{
+		cout << "r_x" << r->m_iX << endl;
+		cout << "r_y" << r->m_iY << endl;
+		r--;        // r从第三个元素往前指
+		           // 最后一次--后r指向了非法内存，不能直接释放
+	}
+	r++;
+	delete []r;
+	r = NULL;
+ 
 	return 0;
 }
 
