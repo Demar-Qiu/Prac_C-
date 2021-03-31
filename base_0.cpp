@@ -47,7 +47,7 @@ typedef struct
 {
 	int x;
 	int y;
-}Coord;
+}Coordi;
 
 /* 关于引用的基础操作 */
 int main_2()
@@ -59,8 +59,8 @@ int main_2()
 	a = 30;
 	cout << a << endl;
 
-	Coord c;          //结构体类型引用
-	Coord& c1 = c;
+	Coordi c;          //结构体类型引用
+	Coordi& c1 = c;
 	c1.x = 15;
 	c1.y = 25;
 	cout << c.x << ',' << c.y << endl;
@@ -353,7 +353,7 @@ int main_8()
 
 // 分文件类外定义
 #include"Teacher.h"
-int main()
+int main_4()
 {
 	//Teacher* p = new Teacher();
 	//delete p;                   // 注意析构函数
@@ -411,9 +411,66 @@ int main()
 	return 0;
 }
 
+#include"Coord.h"
+#include"Line.h"
+/* 对象成员：  一个对象作为另外一个类的数据成员 */
+int main_9()
+{
+	Line* d = new Line(1,2,3,4);   
+	d->printInfo();
+	delete d;
+	d = NULL;            
+	// 从结果来看，先调用坐标的构造函数，然后线段的；销毁时，先调用线段，再坐标的析构函数
+	
+	return 0;
+}
 
+#include"Array.h"
+/* 关于深拷贝和浅拷贝 */
+int main_10()
+{
+	Array arr1(5);        //实例化一个对象arr1
+	//arr1.setCount(5);
 
+	Array arr2(arr1);  // 通过arr1实例化arr2
+	//cout << "arr2.m_iCount:" << arr2.getCount() << endl;
+	//arr1.printAddr();
+	//arr2.printAddr();    //浅拷贝此时会出错（内存释放了两次）
+	arr1.printArr();
+	arr2.printArr();
+	return 0;
+}
 
+/*  对象指针
+   求解两个点的横、纵坐标之和*/
+int main()
+{
+	//从堆中实例化对象//
+	//Coordinate* p1 = NULL;
+	//p1 = new Coordinate; //因为Coordinate是一个默认的构造函数所以可以没有参数,即没有括号
+	//Coordinate* p2 = new Coordinate();
+	//p1->m_iX = 11;
+	//p1->m_iY = 22;
+	//(*p2).m_iX = 33;
+	//(*p2).m_iY = 44;   // 两种方式赋值都可以
+	//cout << p1->m_iX + (*p2).m_iX << endl;
+	//cout << p1->m_iY + (*p2).m_iY << endl;
+	//delete p1;
+	//p1 = NULL;
+	//delete p2; 
+	//p2 = NULL;
+
+	//从栈中实例化对象//
+	Coordinate p1;
+
+	Coordinate* p2 = &p1;   //让p2指向p1
+
+	p2->m_iX = 11;
+	p2->m_iY = 22;
+	cout << p1.m_iX << endl;   //通过p2操作p1的数据成员
+	cout << p1.m_iY << endl;
+	return 0;
+}
 
 
 
