@@ -443,7 +443,7 @@ int main_10()
 
 /*  对象指针
    求解两个点的横、纵坐标之和*/
-int main()
+int main_11()
 {
 	//从堆中实例化对象//
 	//Coordinate* p1 = NULL;
@@ -469,6 +469,26 @@ int main()
 	p2->m_iY = 22;
 	cout << p1.m_iX << endl;   //通过p2操作p1的数据成员
 	cout << p1.m_iY << endl;
+	return 0;
+}
+
+/* 关于this指针 */
+int main_12()
+{
+	Array arr1(10);
+	cout << arr1.getLen() << endl;
+	//arr1.printInfo().setLen(5);
+	//cout << "len=" << arr1.getLen() << endl;  //输出仍为10
+	arr1.printInfo();
+	cout << &arr1 << endl;   // this指针就是指向所在对象本身的值
+	return 0;
+}
+
+int main()
+{
+	const Line line(2, 4, 6, 8);
+	line.printInfo();
+
 	return 0;
 }
 

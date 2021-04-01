@@ -7,9 +7,9 @@ public:
 	Coord(int x,int y);
 	~Coord();
 	void setX(int x);
-	int getX();
+	int getX() const;
 	void setY(int Y);
-	int getY();
+	int getY() const;
 private:
 	int m_iX; // ºá×ø±ê
 	int m_iY; // ×Ý×ø±ê

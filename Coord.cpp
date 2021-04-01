@@ -19,7 +19,7 @@ void Coord::setX(int x)  //横坐标的数据封装函数
 	m_iX = x;
 }
 
-int Coord::getX()
+int Coord::getX() const
 {
 	return m_iX;
 }
@@ -29,7 +29,7 @@ void Coord::setY(int y)  //纵坐标的数据封装函数
 	m_iY = y;  
 }
 
-int Coord::getY()
+int Coord::getY() const
 {
 	return m_iY;
 }

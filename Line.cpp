@@ -14,8 +14,8 @@ Line:: ~Line()
 
 void Line::setA(int x, int y)   //设置A点
 {
-	m_coorA.setX(x);
-	m_coorA.setY(y);
+	//m_coorA.setX(x);
+	//m_coorA.setY(y);
 }
 
 void Line::setB(int x, int y)   //设置B点
@@ -26,9 +26,19 @@ void Line::setB(int x, int y)   //设置B点
 
 void Line::printInfo()
 {
+	cout << "printInfo()" << endl;
 	cout << "(" <<m_coorA.getX()<<","<<m_coorA.getY()<< ")" << endl;
 	cout << "(" <<m_coorB.getX()<<","<<m_coorB.getY()<< ")" << endl;
 }
+
+void Line::printInfo() const
+{
+	cout << "printInfo() const" << endl;
+	cout << "(" << m_coorA.getX() << "," << m_coorA.getY() << ")" << endl;
+	cout << "(" << m_coorB.getX() << "," << m_coorB.getY() << ")" << endl;
+}
+
+
 
 
 
