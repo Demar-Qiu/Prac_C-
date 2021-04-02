@@ -21,7 +21,7 @@ using namespace std;
 
 /*enum objectiveDirections
 {
-	SOUTH,NORTH,WEST,EAST         //南(上)，北(下)，西(左)，东(右)
+	SOUTH,NORTH,WEST,EAST         //南(下)，北(上)，西(左)，东(右)
 };*/
 //const int FAST = 1;
 //const int MIDD = 2;
