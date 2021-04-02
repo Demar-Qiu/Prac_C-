@@ -1,2 +1,0 @@
-E:\visual_studio2019\Maze\Debug\mazeobject.exe
-E:\visual_studio2019\Maze\Debug\mazeobject.pdb
