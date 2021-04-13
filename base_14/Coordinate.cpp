@@ -38,7 +38,7 @@ Coordinate& Coordinate::operator++()     //前置++的成员函数重载
 
 Coordinate Coordinate::operator++(int)  //后置++的成员函数重载
 {
-	Coordinate old(*this);
+	Coordinate old(*this);  //this指针指向的是原临时对象，赋值给old，最后返回的也是这个old
 	this->m_iX++;
 	this->m_iY++;
 	return old;        //注意这里是要返回最初的临时对象，所以不用引用
