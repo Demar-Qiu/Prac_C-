@@ -29,14 +29,14 @@ Coordinate& operator-(Coordinate &coor)     //负号的成员函数重载
 	return coor;
 }
 
-Coordinate& Coordinate::operator++()     //负号的成员函数重载
+Coordinate& Coordinate::operator++()     //前置++的成员函数重载
 {
 	m_iX ++;
 	m_iY ++;
 	return *this;
 }
 
-Coordinate Coordinate::operator++(int)
+Coordinate Coordinate::operator++(int)  //后置++的成员函数重载
 {
 	Coordinate old(*this);
 	this->m_iX++;

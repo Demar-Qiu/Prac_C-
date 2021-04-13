@@ -18,7 +18,7 @@ int main()
 	cout << coor1.getX() << "," << coor1.getY() << endl;
 
 	++coor1;
-	cout << coor1.getX() << "," << coor1.getY() << endl;
+	cout << coor1.getX() << "," << coor1.getY() << endl; //ÑéÖ¤Ç°ÖÃ++
 
 	cout << (coor1++).getX() << ",";
 	cout << (coor1++).getY() << endl;  

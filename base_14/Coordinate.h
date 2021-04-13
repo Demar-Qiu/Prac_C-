@@ -10,7 +10,7 @@ public:
 
 	//Coordinate& operator-();   //声明负号的重载运算符(成员函数)
 	Coordinate& operator++();  //声明前置++的重载运算符(成员函数)
-	Coordinate operator++(int); //声明后置++的重载运算符
+	Coordinate operator++(int); //声明后置++的重载运算符，这里不用引用（返回的是最初创建的临时对象）
 
 	int getX();
 	int getY();
