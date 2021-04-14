@@ -1,8 +1,8 @@
 #pragma once
 #include<iostream>
-using namespace std;
+using namespace std;    // 模板类的代码不能分离编译，都要放在.h文件中
 
-template<typename T,int KSize,int KVal>
+template<typename T,int KSize,int KVal>   
 class MyArray
 {
 public:
@@ -14,10 +14,10 @@ public:
 	}
 	void Display();
 private:
-	T* m_pArr;  //T指针
+	T* m_pArr;  //T指针类型
 };
 
-template<typename T,int KSize,int KVal>
+template<typename T,int KSize,int KVal>   // 每个成员函数定义前不要忘了这句
 MyArray<T, KSize, KVal>::MyArray()      //函数定义在类外
 { 
 	m_pArr = new T[KSize];
@@ -28,9 +28,9 @@ MyArray<T, KSize, KVal>::MyArray()      //函数定义在类外
 }
 
 //template<typename T, int KSize, int KVal>
-//MyArray<T,KSize,KVal>::~MyArray()
+//MyArray<T,KSize,KVal>::~MyArray()        //函数定义在类外
 //{
-//	delete[]m_pArr;         //函数定义在类外
+//	delete[]m_pArr;         
 //	m_pArr = NULL;
 //}
 

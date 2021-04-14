@@ -7,7 +7,7 @@ using namespace std;
        定义函数模板display
 */
 
-template<typename T>
+template<typename T>     //每个函数模板定义前都不要忘记这句
 void display(T a)
 {
     cout << a << endl;

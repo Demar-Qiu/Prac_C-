@@ -10,7 +10,7 @@ using namespace std;
 
 int main()
 {
-    MyArray<int, 5, 6>arr;
+    MyArray<int, 5, 6>arr;  //形成了一个模板类 并实例化
     arr.Display();
 
     return 0;
