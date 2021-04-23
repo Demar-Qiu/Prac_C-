@@ -16,8 +16,8 @@ public:
 	void ListTraverse();
 	bool ListInsert(int i, Node *pNode); //插入节点
 	bool ListDelete(int i, Node *pNode); //删除节点
-	bool ListInsertHead(int i, Node *pNode);  //从头插入节点
-	bool ListInsertTail(int i, Node *pNode);  //从尾插入节点
+	bool ListInsertHead(Node *pNode);  //从头插入节点(将一个节点插入头节点后边)
+	bool ListInsertTail(Node *pNode);  //从尾插入节点（插入尾部后边）
 
 private:
 	Node *m_pList;
