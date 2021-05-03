@@ -4,7 +4,7 @@ using namespace std;
 
 
 
-Tree::Tree(int size)
+Tree::Tree(int size,int *pRoot)
 {
 	m_iSize = size;
 	m_pTree = new int[size];
@@ -12,6 +12,7 @@ Tree::Tree(int size)
 	{
 		m_pTree[i] = 0;
 	}
+	m_pTree[0] = *pRoot;
 }
 
 Tree::~Tree()
@@ -35,7 +36,7 @@ int* Tree::SearchNode(int nodeIndex)
 }
 
 
-bool Tree::AddNode(int nodeIndex, int direction, int* pNode)
+bool Tree::AddNode(int nodeIndex, int direction, int *pNode)
 {
 	if (nodeIndex < 0 || nodeIndex >= m_iSize)
 	{
@@ -74,7 +75,7 @@ bool Tree::AddNode(int nodeIndex, int direction, int* pNode)
 }
 
 
-bool Tree::DeleteNode(int nodeIndex, int* pNode)
+bool Tree::DeleteNode(int nodeIndex, int *pNode)  //注意这里只是删除单个结点，其子结点不会删除
 {
 
 	if (nodeIndex < 0 || nodeIndex >= m_iSize)
@@ -95,6 +96,6 @@ void Tree::TreeTraverse()
 {
 	for (int i = 0; i < m_iSize; i++)
 	{
-		cout << m_pTree[i] << ",";
+		cout << m_pTree[i] << " ";
 	}
 }
