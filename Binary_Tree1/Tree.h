@@ -1,6 +1,6 @@
 #pragma once
 #include"Node.h"
-
+#include<stdio.h>
 
 class Tree
 {
