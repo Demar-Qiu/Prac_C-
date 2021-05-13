@@ -183,6 +183,7 @@ void CMap::primTree(int nodeIndex)   //普里姆生成树
 	cout << m_pNodeArray[nodeIndex].m_cData << endl;   //打印开始的点
 
 	nodeVec.push_back(nodeIndex);  //将传入的nodeIndex放入nodeVec[0]中
+	m_pNodeArray[nodeIndex].m_bIsVisited = true;  //标识被选!
 
 	// 找到所有最小生成树的边为止
 	while (edgeCount < m_iCapacity - 1)
@@ -225,6 +226,56 @@ void CMap::primTree(int nodeIndex)   //普里姆生成树
 		cout << m_pNodeArray[nextNodeIndex].m_cData << endl;
 	}
 }
+
+int CMap::getMinEdge(vector<Edge>edgeVec)
+{
+	int minWeight = 0;
+	int edgeIndex = 0;
+	int i = 0;
+	for (; i < edgeVec.size(); i++)   //遍历每条边
+	{
+		if (!edgeVec[i].m_bSelected)
+		{
+			minWeight = edgeVec[i].m_iWeightValue;   //说明该条边还未被选
+			edgeIndex = i;     //记录相应索引
+			break;
+		}
+	}
+
+	if (minWeight == 0)
+	{
+		return -1;     // 说明没找到未被选的边（边都被选），获取失败
+	}
+
+	//判断其余边有没有权值更小的(这里的i是继上一次找到的i开始)
+	for (; i < edgeVec.size(); i++)
+	{
+		if (edgeVec[i].m_bSelected)
+		{
+			continue;
+		}
+		else
+		{
+			//判断是否形成闭环，若形成则该最小权值的边要舍去
+			/*if (m_pNodeArray[edgeVec[i].m_iNodeIndexB].m_bIsVisited) 
+			{
+				continue;
+			}*/
+
+			if (minWeight > edgeVec[i].m_iWeightValue)
+			{
+				minWeight = edgeVec[i].m_iWeightValue;
+				edgeIndex = i;
+			}
+		}
+	}
+
+	return edgeIndex;
+}
+
+
+
+
 
 
 

@@ -26,6 +26,8 @@ public:
 private:
 	bool getValueFromMatrix(int row, int col, int& val);//从矩阵中获取权值(弧)
 	void breadthFirstTraverseImpl(vector<int>preVec);  //广度优先遍历实现函数
+
+	int getMinEdge(vector<Edge>edgeVec);  //从边集合中获取权值最小的边，返回相应索引
 private:
 	int m_iCapacity;  // 图中最多可以容纳的顶点数
 	int m_iNodeCount;  //已经添加的顶点（结点）个数
