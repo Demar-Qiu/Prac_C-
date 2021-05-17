@@ -79,3 +79,8 @@ void Tree::PostorderTraversal()
 {
 	m_pRoot->PostorderTraversal();
 }
+
+void Tree::LevelorderTraversal()
+{
+	m_pRoot->LevelorderTraversal();
+}

@@ -13,6 +13,7 @@ public:
 	void PreorderTraversal();    //前序遍历
 	void InorderTraversal();    //中序遍历
 	void PostorderTraversal();  //后序遍历
+	void LevelorderTraversal(); //层序遍历
 
 private:
 	Node *m_pRoot; 

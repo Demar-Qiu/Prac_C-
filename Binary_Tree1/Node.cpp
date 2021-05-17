@@ -1,5 +1,6 @@
 #include"Node.h"
 #include<iostream>
+#include<queue>
 using namespace std;
 
 Node::Node()
@@ -35,7 +36,7 @@ Node* Node::SearchNode(int nodeIndex)  //搜索结点
 			}
 		}
 	}
-	
+	 
 	if (this->pRChild != NULL)
 	{
 		if (this->pRChild->index == nodeIndex)
@@ -76,8 +77,6 @@ void Node::DeleteNode()    //删除节点
 	}
 	delete this;  //删除自己结点
 }
-
-
 void Node::PreorderTraversal()
 {
 	cout << this->index << "," << this->data << endl;
@@ -119,4 +118,24 @@ void Node::PostorderTraversal()
 	}
 
 	cout << this->index << "," << this->data << endl;
+}
+
+void Node::LevelorderTraversal()   //层序遍历，用队列实现
+{
+	if (this != NULL)
+	{
+		queue<Node*> q;
+		q.push(this);
+		while (!q.empty())
+		{
+			Node* p = q.front();   //p指向队列中的第一个结点元素（队头）
+			q.pop();               //队头的元素出队
+			cout << p->data << " ";  //输出该结点
+			// 获取该结点的左右孩子，并将其入队
+			if (p->pLChild != NULL)
+				q.push(p->pLChild);
+			if (p->pRChild != NULL)
+				q.push(p->pRChild);
+		}
+	}
 }

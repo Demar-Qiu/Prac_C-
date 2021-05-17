@@ -3,6 +3,10 @@
 #include<iostream>
 using namespace std;
 
+/*
+   用链表实现的二叉树及其遍历方式
+*/
+
 
 int main()
 {
@@ -41,7 +45,7 @@ int main()
 	tree->AddNode(2, 0, node5);
 	tree->AddNode(2, 1, node6);
 
-	tree->DeleteNode(2, NULL);  //删除结点
+	//tree->DeleteNode(2, NULL);  //删除结点
 
 	cout << "前序遍历" << endl;
 	tree->PreorderTraversal();  //前序遍历 0134256
@@ -49,6 +53,8 @@ int main()
 	tree->InorderTraversal();   //中序遍历 3140526
 	cout << "后序遍历" << endl;
 	tree->PostorderTraversal();   //后序遍历 3415620
+	cout << "层序遍历" << endl;
+	tree->LevelorderTraversal();   //层序遍历（这里输出的是值）
 
 	delete tree;
 	return 0;
