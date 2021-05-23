@@ -5,6 +5,8 @@ using namespace std;
 
 /* 哈希表 */
 
+//哈希表又称为散列表，key对应value  key通过哈希函数转化为散列地址，在散列表中每个散列地址对应key
+
 //散列函数采用除留余数法: f(key)=key mod p(p一般取素数)
 //冲突解决采用开放寻址法的线性探测法: hi(key)=(h(key)+di) mod TableSize
 //                  i表示发生第i次冲突，这里di决定不同的解决冲突方案（线性探测、平方探测喝双散列）            
@@ -16,7 +18,7 @@ static enum status{failure=-1,success=0}flag;
 int hashSearch(int* hashTable, int key, int length);
 
 void test();
-int main()
+int main_0()
 {
 	test();
 
@@ -45,30 +47,39 @@ int hashFunc(int key, int length)
 	return key % length;   //除留取余法：f(key)=key mod p(p一般取素数)
 }
 
+//哈希表插入。  在哈希表相应位置插入key
 int hashInsert(int* hashTable, int key, int length)
 {
 	if (NULL == hashTable || length <= 0)
 		return -1;
-	int hashAddr = hashFunc(key, length);
+	int hashAddr = hashFunc(key, length);  //将要插入的key转化为散列地址
 	if (-1 == hashAddr)
 	{
 		return -1;
 	}
+
+	//while (hashTable[hashAddr] != max)
+	//{
+	//	hashAddr = (hashAddr + 1) % length;
+	//}
+	//hashTable[hashAddr] = key;
+	//return 0;
+
 	for (int i = 0; i < length; i++)
 	{
 		if (hashTable[hashAddr] != max)  //哈希冲突
 		{
-			hashAddr = (hashAddr + 1) % 12;// 开放寻址的线性探测法，查找下一个可存放数据的空间
+			hashAddr = (hashAddr + 1) % length;// 开放寻址的线性探测法，查找下一个可存放数据的空间
 		}
 		else
 			break;
 	}
-	if (max == hashTable[hashAddr])
+	if (max == hashTable[hashAddr])  //若找到空的哈希表地址则插入，返回0
 	{
 		hashTable[hashAddr] = key;
 		return 0;
 	}
-	return -1;
+	return -1;   //若都满了，不存在空地址，则返回-1
 }
 
 // 查找哈希表的键值key
