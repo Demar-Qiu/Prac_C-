@@ -10,7 +10,7 @@ using namespace std;
 //散列函数采用除留余数法: f(key)=key mod p(p一般取素数)
 //冲突解决采用链表法: 将相应位置上冲突的所有关键词存储在同一个单链表中。
                // 每一个Entry对象通过next指针指向它的下一个Entry节点。
-               //当新来的 Entry映射到与之冲突的数组位置时，只需要插入到对应的链表中即可。
+               //当新来的Entry映射到与之冲突的数组位置时，只需要插入到对应的链表中即可。
 
 
 #define MAXTABLESIZE 10000 //允许开辟的最大散列表长度
@@ -23,10 +23,10 @@ struct LNode
     LNode* next;
 };
 typedef LNode* PtrToNode;
-typedef PtrToNode LinkList;
+typedef PtrToNode LinkList; //存储指向节点的指针列表
 struct TblNode
 {
-    int tablesize;  //表的最大长度
+    int tablesize;  //散列表的最大长度
     LinkList heads; //存放散列单元数据的数组
 };
 typedef struct TblNode* HashTable;
@@ -38,7 +38,7 @@ int NextPrime(int n)
     int i;
     while (p <= MAXTABLESIZE)
     {
-        for (i = (int)sqrt(p); i > 2; i--)
+        for (i = (int)sqrt(p); i > 2; i--)  //素数的判断
         {
             if ((p % i) == 0)
                 break;
@@ -54,33 +54,35 @@ int NextPrime(int n)
 /*创建新的哈希表*/
 HashTable CreateTable(int table_size)
 {
-    HashTable h = (HashTable)malloc(sizeof(TblNode));
+    HashTable h = (HashTable)malloc(sizeof(TblNode));   //注意做内存分配检查
     h->tablesize = NextPrime(table_size);
-    h->heads = (LinkList)malloc(h->tablesize * sizeof(LNode));
+    h->heads = (LinkList)malloc(h->tablesize * sizeof(LNode)); //散列单元数据的单链表，heads是头结点
     //初始化表头结点
     for (int i = 0; i < h->tablesize; i++)
     {
         h->heads[i].next = NULL;
     }
     return h;
+   
 }
 
-/*查找数据的初始位置*/
+/*哈希函数 查找数据的初始位置*/
 int Hash(ElementType key, int n)
 {
     //这里只针对大小写
-    return key % 11;
+    return key % 11;  //这里哈希函数设为此
+    //return key % n;
 }
 
-/*查找元素位置*/
+/*根据key查找元素位置*/
 LinkList Find(HashTable h, ElementType key)
 {
     int pos;
 
-    pos = Hash(key, h->tablesize); //初始散列位置
+    pos = Hash(key, h->tablesize); //初始散列地址
 
     LinkList p = h->heads[pos].next; //从链表的第一个节点开始
-    while (p && key != p->data)
+    while (p && key != p->data)  //发生冲突，转向下一个节点
     {
         p = p->next;
     }
@@ -94,11 +96,11 @@ bool Insert(HashTable h, ElementType key)
     LinkList p = Find(h, key); //先查找key是否存在
     if (!p)
     {
-        //关键词未找到，可以插入
-        LinkList new_cell = (LinkList)malloc(sizeof(LNode));
-        new_cell->data = key;
-        int pos = Hash(key, h->tablesize);
-        new_cell->next = h->heads[pos].next;
+        //关键词key未找到，可以插入
+        LinkList new_cell = (LinkList)malloc(sizeof(LNode));  //注意做内存分配检查
+        new_cell->data = key; //key先赋值给节点值
+        int pos = Hash(key, h->tablesize); //获取散列地址
+        new_cell->next = h->heads[pos].next;  //将散列地址所在的节点next赋值
         h->heads[pos].next = new_cell;
         return true;
     }
@@ -117,15 +119,16 @@ void DestroyTable(HashTable h)
     //释放每个节点
     for (i = 0; i < h->tablesize; i++)
     {
-        p = h->heads[i].next;
-        while (p)
+        p = h->heads[i].next; //链表头结点所指向的下一个节点
+        while (p)   //若存在，将下一节点赋值给p,删除该节点
         {
             tmp = p->next;
             free(p);
             p = tmp;
         }
     }
-    free(h->heads);
+    //直到所有单链表都删除完，最后删除表头和表
+    free(h->heads);  
     free(h);
 }
 
