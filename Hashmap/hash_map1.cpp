@@ -56,7 +56,7 @@ HashTable CreateTable(int table_size)
 {
     HashTable h = (HashTable)malloc(sizeof(TblNode));   //注意做内存分配检查
     h->tablesize = NextPrime(table_size);
-    h->heads = (LinkList)malloc(h->tablesize * sizeof(LNode)); //散列单元数据的单链表，heads是头结点
+    h->heads = (LinkList)malloc(h->tablesize * sizeof(LNode)); //散列单元数据的单链表
     //初始化表头结点
     for (int i = 0; i < h->tablesize; i++)
     {
@@ -127,7 +127,7 @@ void DestroyTable(HashTable h)
             p = tmp;
         }
     }
-    //直到所有单链表都删除完，最后删除表头和表
+    //直到所有单链表都删除完，最后删除节点链表和哈希表
     free(h->heads);  
     free(h);
 }
