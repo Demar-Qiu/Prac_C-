@@ -11,7 +11,7 @@ public:
 	void ClearQueue();
 	bool QueueEmpty() const;
 	bool QueueFull() const;
-	bool QueueLength() const;
+	int QueueLength() const;
 	bool EnQueue(Customer element);
 	bool DeQueue(Customer& element);
 	void QueueTraverse(); 
