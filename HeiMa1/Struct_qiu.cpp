@@ -26,7 +26,7 @@ void printStudentInfo2(struct student* s)
 }
 
 
-int main()
+int main_0()
 {
 	struct student s;
 	s.name = "Âí¿Ë";
@@ -42,4 +42,4 @@ int main()
 	
 	return 0;
 
-}
+} 
