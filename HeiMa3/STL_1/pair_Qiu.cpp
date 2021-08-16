@@ -19,7 +19,7 @@ void test03()
 }
 
 
-int main()
+int main_01()
 {
 	test03();
 
